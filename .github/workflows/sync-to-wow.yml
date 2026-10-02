@@ -19,7 +19,7 @@ jobs:
         run: |
           git clone --depth 1 "https://x-access-token:${{ secrets.WOW_SYNC_TOKEN }}@github.com/JM508/wow.git" wow
           mkdir -p wow/static/img
-          cp runner.js runner.css skins.js shop.js shop.css wow/static/
+          cp runner.js runner.css skins.js shop.js shop.css ach.js ach.css wow/static/
           cp img/*.webp wow/static/img/
           cd wow
           git config user.name "stick-runner-bot"
