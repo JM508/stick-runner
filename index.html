@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>火柴人快跑 · 独立版</title>
+<meta name="description" content="火柴人快跑 —— 横版无尽跑酷小游戏（独立可玩版，与 Wow 娱乐小站同步更新）">
+<link rel="stylesheet" href="./runner.css">
+<link rel="stylesheet" href="./shop.css">
+</head>
+<body>
+<div id="run-root" aria-label="火柴人快跑小游戏">
+  <div class="run-hud">
+    <div class="run-brand">
+      <strong>火柴人快跑</strong>
+      <span>独立版 · 与 Wow 娱乐小站同步更新</span>
+    </div>
+    <div class="run-board">
+      <span id="run-score" aria-live="polite">SCORE: 00000</span>
+      <span id="run-best">HI: 00000</span>
+      <span id="run-coins" title="本局收集的金币">🪙 0</span>
+    </div>
+    <div class="run-tools">
+      <button type="button" class="run-shop-btn" id="run-shop-btn" data-open-shop title="用金币兑换皮肤">🛍 商店</button>
+      <button type="button" id="run-mute" aria-pressed="false" title="音效开关">🔊 音效</button>
+      <button type="button" id="run-help" title="玩法说明">玩法</button>
+    </div>
+  </div>
+
+  <div class="run-stage" id="run-stage">
+    <canvas id="run-canvas" width="960" height="360" aria-label="游戏画面"></canvas>
+    <div class="run-overlay" id="run-overlay">
+      <div class="run-card">
+        <h3 id="run-ov-title">火柴人快跑</h3>
+        <div id="run-ov-text" class="run-ov-text"></div>
+        <button type="button" id="run-ov-btn" class="run-primary">开始奔跑</button>
+        <div id="run-records" class="run-records"></div>
+      </div>
+    </div>
+    <div class="run-toast" id="run-toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <div class="run-controls">
+    <button type="button" id="run-jump" class="run-ctl">跳跃</button>
+    <button type="button" id="run-duck" class="run-ctl">下蹲</button>
+  </div>
+
+  <p class="run-foot">
+    键盘：<kbd>空格</kbd>/<kbd>↑</kbd>/<kbd>W</kbd> 起跳（长按跳更高），<kbd>↓</kbd>/<kbd>S</kbd> 下蹲，
+    <kbd>P</kbd> 暂停，<kbd>M</kbd> 静音。手机：点屏幕起跳，向下滑动或按「下蹲」躲障碍。
+  </p>
+  <p class="run-foot run-wallet-bar">
+    <span id="run-wallet">钱包 0</span> ·
+    <button type="button" class="run-link-btn" data-open-shop>🛍 皮肤商店</button>
+    —— 每局收集的金币都会存进钱包（保存在本机浏览器），可在这里兑换火柴人皮肤与金币皮肤。
+  </p>
+  <p class="run-foot">
+    开源仓库：<a href="https://github.com/JM508/stick-runner" rel="noopener" target="_blank">github.com/JM508/stick-runner</a>
+  </p>
+</div>
+
+<!-- ═══ 皮肤商店弹层（本地钱包，离线可玩） ═══ -->
+<div id="run-shop" class="run-shop hidden" data-shop-panel role="dialog" aria-modal="true" aria-labelledby="run-shop-title">
+  <div class="run-shop-box">
+    <div class="run-shop-head">
+      <strong id="run-shop-title">🛍 皮肤商店</strong>
+      <button type="button" class="run-shop-x" id="run-shop-close" title="关闭商店" aria-label="关闭商店">✕</button>
+    </div>
+    <div id="shop-root" aria-label="皮肤商店商品"></div>
+  </div>
+</div>
+
+<script src="./skins.js" defer></script>
+<script src="./shop.js" defer></script>
+<script src="./runner.js" defer></script>
+</body>
+</html>

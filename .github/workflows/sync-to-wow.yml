@@ -1,0 +1,33 @@
+name: Sync runner to wow site
+
+# stick-runner 更新 → 自动把游戏文件同步进 wow 站点仓库 → Cloudflare Pages 自动构建
+on:
+  push:
+    branches: [main]
+
+jobs:
+  sync:
+    if: github.repository == 'JM508/stick-runner'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copy game files into wow repo and push
+        shell: bash
+        run: |
+          git clone --depth 1 "https://x-access-token:${{ secrets.WOW_SYNC_TOKEN }}@github.com/JM508/wow.git" wow
+          mkdir -p wow/static/img
+          cp runner.js runner.css skins.js shop.js shop.css wow/static/
+          cp img/*.webp wow/static/img/
+          cd wow
+          git config user.name "stick-runner-bot"
+          git config user.email "stick-runner-bot@users.noreply.github.com"
+          git add -A static
+          if git diff --cached --quiet; then
+            echo "No changes to sync."
+            exit 0
+          fi
+          git commit -m "sync: 火柴人快跑更新自 stick-runner@${GITHUB_SHA::7}"
+          git push
