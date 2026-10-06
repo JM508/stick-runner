@@ -106,8 +106,9 @@
         <span class="me-ava-ph" id="me-ava-ph" aria-hidden="true">＋</span>
       </div>
       <div class="me-id">
-        <strong class="me-nick" id="me-nick">无名火柴人</strong>
+        <strong class="me-nick" id="me-nick">无名玩家</strong>
         <span class="me-sub" id="me-sub">未登录 · 头像只存在本机</span>
+        <span class="me-region" id="me-region" title="IP 属地（省级/国家级）"></span>
       </div>
       <div class="me-ava-act">
         <button type="button" class="me-btn" id="me-ava-pick">选择图片</button>
@@ -115,6 +116,15 @@
       </div>
       <input type="file" class="me-file" id="me-ava-file" accept="image/png,image/jpeg,image/webp,image/gif">
       <p class="me-hint" id="me-ava-hint">头像会公开显示在云端排行榜上。建议用正方形图片，会自动裁成圆形并压缩。</p>
+    </section>
+
+    <section class="me-card">
+      <label class="me-nick-lab" for="me-nick-input">排行榜昵称</label>
+      <div class="me-nick-row" id="me-nick-row">
+        <input id="me-nick-input" type="text" maxlength="16" placeholder="登录后可以自己取名" autocomplete="nickname">
+        <button type="button" id="me-nick-save" class="me-btn">保存</button>
+      </div>
+      <p class="me-hint" id="me-nick-hint">取名后会显示在排行榜上（不允许重名）；未登录时成绩以「访客 N」自动上传。</p>
     </section>
 
     <section class="me-card">
