@@ -240,14 +240,23 @@
     }
   };
 
+  /* 键名会拼进 innerHTML（按键列表 / 提示文案），兜底分支必须转义：
+     keyNorm 对未知字符串原样放行，若 localStorage 或云端设置被篡改，
+     未转义的 <img onerror> 之类就能从设置面板打出来。 */
+  function keyEsc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+
   function keyName(code) {
     if (!code) return "?";
     if (KEY_NAMES[code]) return KEY_NAMES[code];
     if (/^Key[A-Z]$/.test(code)) return code.slice(3);
     if (/^Digit\d$/.test(code)) return code.slice(5);
-    if (/^Numpad/.test(code)) return "小键盘 " + code.slice(6);
+    if (/^Numpad/.test(code)) return "小键盘 " + keyEsc(code.slice(6));
     if (/^F\d{1,2}$/.test(code)) return code;
-    return code.length === 1 ? code.toUpperCase() : code;
+    return keyEsc(code.length === 1 ? code.toUpperCase() : code);
   }
   function keyNorm(code) {
     if (!code) return "";
